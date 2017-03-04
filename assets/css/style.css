@@ -1,0 +1,20 @@
+body {
+	background-image: url("../images/background.png");
+	background-size: cover;
+}
+
+
+.Aligner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Aligner-item {
+  max-width: 50%;
+}
+
+.button-hide {
+	display: none;
+}
+
