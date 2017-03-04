@@ -1,8 +1,30 @@
 body {
 	background-image: url("../images/background.png");
 	background-size: cover;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
 }
 
+ol {
+	list-style-type: upper-alpha;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+li {
+	text-align: left;
+	margin:10px;
+}
+
+li:hover {
+	background-color: #ddb111;
+}
+
+li.selected{
+	background-color: #ea5119;
+	filter: drop-shadow(2px 2px 2px);
+}
 
 .Aligner {
   display: flex;
@@ -14,7 +36,28 @@ body {
   max-width: 50%;
 }
 
+.Aligner-item--bottom {
+  align-self: flex-end;
+}
+
+#trivia-container {
+	margin:20px;
+
+}
+
 .button-hide {
 	display: none;
 }
+
+.restart-button {
+  background-color: #7f41db;
+  color: white;
+}
+
+.restart-button:hover {
+	color: white;
+	filter: drop-shadow(2px 2px 2px);
+}
+
+
 
