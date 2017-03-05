@@ -5,26 +5,35 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
 	<!-- Customized css -->
+	<link href="https://fonts.googleapis.com/css?family=Amiko" rel="stylesheet">
 	<link rel="stylesheet" href="./assets/css/reset.css">
 	<link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-	<div class="container Aligner" style="height:100%;">
-		<div class="row Aligner-item" style="border: 1px solid black; min-height: 50%; min-width: 50%; background-color: grey; opacity: 0.9; filter: drop-shadow(5px 5px 5px);">
+	<nav class="jackpots">Trivia Game</nav>
+	<div class="container Aligner" style="height:90%;">
+		<div class="Aligner-item trivia-display-container timer-container">
+				<div id="time" class="timer">
+				</div>
+		</div>
+		<div class="Aligner-item trivia-display-container">
 			<div  id="trivia-container" style="min-height: 30%">
 				<div id="question">
 				</div>
-				<div id="test">
+				<div id="choices">
 
 				</div>
-				<span id="answer"></span>
-				<span id="right-or-wrong"></span>
-				<span id="stats"></span>
+				<div id="answer"></div>
+				<div id="right-or-wrong"></div>
+				<div id="stats"></div>
 				<div id="img-container"></div>				
 			</div>
 			<button id="restart" class="button-hide">Restart?</button>
 		</div>
 	</div>
+	<audio id="player" style="display: none;" controls autoplay>
+	  <source id="audio-source" src="" type="audio/mpeg" />
+	</audio>
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.16.6/lodash.min.js"></script>
 <script type="text/javascript" src="./assets/javascript/app.js"></script>

@@ -1,8 +1,8 @@
 const data =[
 {question: "Who won the 2004 NBA Champions?", choices: {"A": "LA Lakers", "B":"Boston Celtics", "C": "Detroit Pistons", "D": "San Antonio Spurs"}, key: "C", ref: "piston.png"},
-//{question: "What is the most popular breed of dog in the United States?", choices: {"A": "Beagles", "B":"British Bulldogs", "C": "Labrador Retriever", "D": "Chihuahua"}, key: "C", ref: "retriever.png"},
-//{question: "Madagascar is an island located of the southeast coast of what continent?", choices: {"A": "Africa", "B":"Asia", "C": "South America", "D": "Oceania"}, key: "A", ref: "madagascar.png"},
-//{question: "Yerevan, one of the world's oldest continuously inhabited cities, is the capital of what country?", choices: {"A": "Argentina", "B":"Armenia", "C": "Georgia", "D": "India"}, key: "B", ref: "yerevan.png"},
+{question: "What is the most popular breed of dog in the United States?", choices: {"A": "Beagles", "B":"British Bulldogs", "C": "Labrador Retriever", "D": "Chihuahua"}, key: "C", ref: "retriever.png"},
+{question: "Madagascar is an island located of the southeast coast of what continent?", choices: {"A": "Africa", "B":"Asia", "C": "South America", "D": "Oceania"}, key: "A", ref: "madagascar.png"},
+{question: "Yerevan, one of the world's oldest continuously inhabited cities, is the capital of what country?", choices: {"A": "Argentina", "B":"Armenia", "C": "Georgia", "D": "India"}, key: "B", ref: "yerevan.png"},
 ];
 
 class TriviaQuestion {
@@ -13,14 +13,14 @@ class TriviaQuestion {
 		this.ref = q.ref;
 		this.response = null;
 		this.intervalId = null;
-		this.timeAllowed = 5000;
+		this.timeAllowed = 10000;
 		this.elapsedTime = 0;
 	}
 
 	renderQuestion(){
 		$("#question").text(this.question);
 		let questionDisplayed = $("<ol>");
-		$("#test").append(questionDisplayed);
+		$("#choices").append(questionDisplayed);
 		_.forEach(this.choices, (choice, key) =>{
 			let choiceDisplayed = $("<li>");
 			choiceDisplayed.text(choice);
@@ -38,39 +38,45 @@ class TriviaQuestion {
 
 	updateClock(game) {
 		this.elapsedTime +=1000;
+		$("#time").text((this.timeAllowed-this.elapsedTime)/1000);
 		if (this.elapsedTime >= this.timeAllowed){
 			this.displayAnswer(null,game);
 		}
 	}
 
 	displayAnswer(id, game){
-		$("#answer").text(this.key);
+		$("#answer").text(`Correct answer is ${this.key}`);
 		clearInterval(this.intervalId);
 		var self =this;
 		this.determineAnswer(id, game);
 		this.intervalId = setTimeout(function(){
 			self.removeQuestion(game);
-		}, 3000);
+		}, 4000);
 	}
 
 	determineAnswer(id, game){
 		if (!game.clicked) {
 			let displayImg = $("<img>");
 			let base = `./assets/images/`;
-			displayImg.attr({"src": `${base}/${this.ref}`, "width": "200px", "height":"200px"});
+			displayImg.attr({"src": `${base}/${this.ref}`});
 			$("#img-container").append(displayImg);
 		} 
 		
 		if (!game.clicked){
 			$(`#${id}`).attr({"class": "selected"});
 			if (id === this.key){
+				$("#right-or-wrong").attr({"class": "right"});
 				$("#right-or-wrong").text("You are correct!");
+				$("#audio-source").attr({"src": "./assets/audios/tada.mp3"});
+				$("#player").load();
 				game.gameStatus.correct++;
 			} else if (id !==null) {
 				game.gameStatus.incorrect++;
+				$("#right-or-wrong").attr({"class": "wrong"});
 				$("#right-or-wrong").text("You guessed wrong!");
 			} else {
 				game.gameStatus.incorrect++;
+				$("#right-or-wrong").attr({"class": "wrong"});
 				$("#right-or-wrong").text("Times up, you didn't pick an answer!");
 			}
 		}
@@ -83,10 +89,12 @@ class TriviaQuestion {
 
 	removeQuestion(game){
 		$("#question").html("");
-		$("#test").html("");
+		$("#choices").html("");
 		$("#answer").html("");
+		$("#right-or-wrong").attr({class: ""});
 		$("#right-or-wrong").html("");
 		$("#img-container").html("");
+		$("#time").html("");
 		clearTimeout(this.intervalId);
 		game.displayNextQuestion();
 	}

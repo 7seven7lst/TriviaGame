@@ -1,29 +1,45 @@
+@font-face {
+  font-family: moon;
+  src: url("../fonts/moon.ttf");
+}
+
 body {
 	background-image: url("../images/background.png");
 	background-size: cover;
 	text-align: center;
-	font-size: 16px;
+	
 	font-weight: bold;
+	font-family: 'Amiko', sans-serif;
 }
 
 ol {
 	list-style-type: upper-alpha;
 	margin-left: 20%;
-	margin-right: 20%;
+	margin-right:20%;
+	font-size: 16px;
+
 }
 
 li {
-	text-align: left;
-	margin:10px;
+	margin:5%;
+	filter: drop-shadow(1px 1px 1px);
+	border: 1px solid black;
+	border-radius: 25px;
+	background-color: #9F97A1;
 }
 
 li:hover {
-	background-color: #ddb111;
+	background-color: #CBFF0D;
 }
 
 li.selected{
-	background-color: #ea5119;
-	filter: drop-shadow(2px 2px 2px);
+	background-color: #E8950C;
+	filter: drop-shadow(5px 5px 5px);
+}
+
+img {
+		width: 200px;
+		height: 200px;
 }
 
 .Aligner {
@@ -33,16 +49,38 @@ li.selected{
 }
 
 .Aligner-item {
-  max-width: 50%;
+  max-width: 70%;
 }
 
 .Aligner-item--bottom {
   align-self: flex-end;
 }
 
+.trivia-display-container {
+	border: 1px solid black; 
+	min-height: 80%; 
+	min-width: 50%; 
+	background-color: grey; 
+	opacity: 0.9; 
+	filter: drop-shadow(5px 5px 5px);
+}
 #trivia-container {
 	margin:20px;
 
+}
+
+#time {
+	color: #FF0000;
+}
+
+#right-or-wrong.right{
+	color: blue;
+	animation-name: backandforth;
+	animation-duration: 2s;
+}
+
+#right-or-wrong.wrong{
+	color:red;
 }
 
 .button-hide {
@@ -50,7 +88,7 @@ li.selected{
 }
 
 .restart-button {
-  background-color: #7f41db;
+  background-color: #590CE8;
   color: white;
 }
 
@@ -59,5 +97,106 @@ li.selected{
 	filter: drop-shadow(2px 2px 2px);
 }
 
+.timer-container {
+	min-width: 20%;
+	background-color: #5C5858;
+}
 
+.timer {
+	/* Typography */
+  text-align: center;
+  font-size: 120px;
+  font-family: monospace;
+  padding-top:60%;
+  vertical-align: middle;
+}
+
+#stats{
+	font-size: 30px;
+	color: #FF0000;
+}
+
+
+
+nav {
+	margin-top:2%;
+}
+.jackpots {
+  font-family: moon;
+  font-size: 36px;
+  letter-spacing: 15px;
+}
+
+.jackpots {
+  animation: jackpots 5s 0s ease infinite;
+  -moz-animation: jackpots 5s 0s ease infinite;
+  /* Firefox */
+  -webkit-animation: jackpots 5s 0s ease infinite;
+  /* Safari and Chrome */
+  -o-animation: jackpots 5s 0s ease infinite;
+  /* Opera */
+}
+
+@keyframes jackpots {
+  0%,
+  100% {
+  text-shadow: 
+  -.1vw 0vw .1vw #9bce71, -.15vw 0vw .2vw #9bce71, -.2vw 0vw .2vw #9bce71, 
+  -.1vw 0vw 3vw #9f71c4, -.2vw 0vw 3vw #9f71c4, -.4vw 0vw 3vw #9f71c4,
+  -.1vw 0vw 5vw #9f71c4, -.2vw 0vw 5vw #9f71c4, -.4vw 0vw .8vw #9f71c4, .2vw 0vw 10vw #9f71c4;
+    color: #9bce71;
+  }
+  50% {
+  text-shadow: 
+  -.1vw 0vw .1vw #705C12, -.15vw 0vw .2vw #705C12, -.2vw 0vw .2vw #705C12, 
+  -.1vw 0vw .1vw #470f75, -.2vw 0vw .1vw #470f75, -.4vw 0vw .1vw #470f75,
+  -.1vw 0vw .2vw #470f75, -.2vw 0vw .2vw #470f75, -.4vw 0vw .2vw #470f75, .2vw 0vw .5vw #470f75;
+    color: #705C12;
+  }
+}
+
+@media screen and (max-width: 980px) {
+	ol {
+		margin-left: 15%;
+		margin-right:15%;
+	}
+	img {
+		width: 200px;
+		height: 200px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	ol {
+		margin-left: 5%;
+		margin-right:5%;
+		font-size: 14px;
+	}
+	#stats {
+		font-size: 24px;
+	}
+
+}
+
+@media screen and (max-width: 640px) {
+	ol {
+		margin-left: 0%;
+		margin-right:0%;
+		font-size: 12px;
+	}
+	img {
+		width: 120px;
+		height: 120px;
+	}
+	#stats {
+		font-size:16px;
+	}
+}
+
+
+@keyframes backandforth {
+    0%   {color: blue;}
+    50%  {color: yellow; font-size: 24px;}
+    100% {color: blue;}
+}
 
